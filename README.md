@@ -12,7 +12,7 @@ Mysql database:
 
 -username: admin
 
--password: admin
+-password: 1Admin2_*3Back
 
 OpenApi documentation
 http://localhost:8080/swagger-ui/index.html
