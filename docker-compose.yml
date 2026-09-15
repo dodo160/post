@@ -1,0 +1,30 @@
+services:
+  mysqldb:
+    image: "mysql:8.0.46"
+    restart: always
+    ports:
+      - 3306:3306
+    networks:
+      - post-network
+    environment:
+      MYSQL_DATABASE: post_schema
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 1Admin2_*3Back
+      MYSQL_ROOT_PASSWORD: root
+
+  api_service:
+    image: posts-api:0.0.1-SNAPSHOT
+    build: .
+    restart: always
+    ports:
+      - "8080:8080"
+      - "127.0.0.1:5005:5005"
+    networks:
+      - post-network
+    environment:
+      JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+      SPRING_DATASOURCE_URL: "jdbc:mysql://mysqldb:3306/post_schema?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&useTimezone=true&serverTimezone=Europe/Bratislava"
+    depends_on:
+      - mysqldb
+networks:
+  post-network:
