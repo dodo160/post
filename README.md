@@ -10,9 +10,5 @@ Mysql database:
 
 -port : 3306
 
--username: admin
-
--password: 1Admin2_*3Back
-
 OpenApi documentation
 http://localhost:8080/swagger-ui/index.html
